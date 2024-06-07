@@ -68,3 +68,20 @@ https://github.com/Ciarands/vidsrc-to-resolver/assets/74070993/2dcf8e1d-0011-424
 This is purely intended as proof of concept, the distribution of program is intended for educational purposes ONLY. 
 
 #### [Join the discord for support](https://discord.gg/z2r8e8neQ7)
+
+
+## Full Setup of vidsrc cli
+
+```bash
+
+git clone https://github.com/Ciarands/vidsrc-to-resolver.git
+cd vidsrc-to-resolver
+pyenv virtualenv 3.12.3 vidsrc-to-resolver 
+pyenv shell vidsrc-to-resolver  
+pyenv local vidsrc-to-resolver  
+
+pip install -r requirements.txt 
+sudo apt install mpv  
+
+python3 vidsrc.py
+```
