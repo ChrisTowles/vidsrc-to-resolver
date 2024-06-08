@@ -85,3 +85,5 @@ sudo apt install mpv
 
 python3 vidsrc.py
 ```
+
+Thanks for how the decode works from - https://github.com/cool-dev-guy/vidsrc-api/blob/main/models/utils.py#L19

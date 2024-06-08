@@ -54,6 +54,8 @@ class VidSrcExtractor:
             raise VidSrcError(error_msg)
 
         data = req.json()
+        print(f"Fetching sources from {data}")
+
         return {video.get("title"): video.get("id") for video in data.get("result")}
 
     def get_streams(
@@ -64,6 +66,10 @@ class VidSrcExtractor:
         episode: Optional[str],
     ) -> Tuple[Optional[List], Optional[Dict], Optional[str]]:
         url = f"{VidSrcExtractor.BASE_URL}/embed/{media_type}/{media_id}"
+
+        browser_url = f"https://vidsrc.to/embed/{media_type}/{media_id}"
+        print(f"[>] IF this fails, try opening:  {browser_url}...")
+
         if season and episode:
             url += f"/{season}/{episode}"
 
