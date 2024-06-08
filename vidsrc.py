@@ -366,6 +366,6 @@ if __name__ == "__main__":
     print("[>] File:", file_output)
     print("")
     print(f'open {file_output}')
-    print(f'plex-cd {file_output}')
+    print(f'plex-mv {file_output}')
     print("")
     print("Done.")
