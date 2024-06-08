@@ -292,12 +292,13 @@ if __name__ == "__main__":
         )
 
     se = (
-        args.season or questionary.text("Input Season Number").unsafe_ask()
+        args.season or questionary.text("Input Season Number", default="1").unsafe_ask()
         if media_type == "tv"
         else None
     )
     ep = (
-        args.episode or questionary.text("Input Episode Number").unsafe_ask()
+        args.episode
+        or questionary.text("Input Episode Number", default="1").unsafe_ask()
         if media_type == "tv"
         else None
     )
@@ -365,7 +366,7 @@ if __name__ == "__main__":
     os.system(yt_dlp_cmd)
     print("[>] File:", file_output)
     print("")
-    print(f'open {file_output}')
-    print(f'plex-mv {file_output}')
+    print(f"open {file_output}")
+    print(f"plex-mv {file_output}")
     print("")
     print("Done.")
