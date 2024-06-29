@@ -22,6 +22,7 @@ class VidSrcExtractor:
         "https://vidplay.online"  # vidplay.site / vidplay.online / vidplay.lol
     )
     TMDB_BASE_URL = "https://www.themoviedb.org"
+    IMDB_BASE_URL = "https://www.imdb.com/find/"
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0"
 
     def __init__(self, **kwargs) -> None:
@@ -91,13 +92,31 @@ class VidSrcExtractor:
 
         sources_code = sources_code.get("data-id")
         sources = self.get_sources(sources_code)
-        source = sources.get(self.source_name)
-        if not source:
-            available_sources = ", ".join(list(sources.keys()))
-            print(
-                f'[VidSrcExtractor] No source found for "{self.source_name}"\nAvailable Sources: {available_sources}'
-            )
+        source_Vidplay = sources.get("Vidplay")
+        source_F2Cloud = sources.get("F2Cloud")
+        source_Filemoon = sources.get("Filemoon")
+        source = ""
+
+        if source_Vidplay:
+            self.source_name = "Vidplay"
+            source = source_Vidplay
+        elif source_Filemoon:
+            self.source_name = "Filemoon"
+            source = source_Filemoon
+        elif source_F2Cloud:
+            self.source_name = "F2Cloud"
+            source = source_F2Cloud
+
+        else:
+            print("[VidSrcExtractor] Couldnt find a source...")
             return None, None, None
+
+        # if not source:
+        #     available_sources = ", ".join(list(sources.keys()))
+        #     print(
+        #         f'[VidSrcExtractor] No source found for "{self.source_name}"\nAvailable Sources: {available_sources}'
+        #     )
+        #     return None, None, None
 
         source_url = self.get_source_url(source)
 
@@ -370,7 +389,6 @@ if __name__ == "__main__":
     print(yt_dlp_cmd)
     # os.system(mpv_cmd)
     os.system(yt_dlp_cmd)
-    print("[>] File:", file_output)
     print("")
     print(f"open {file_output}")
     print(f"plex-mv {file_output}")
